@@ -1,7 +1,11 @@
-from . import KeyPair
+from .key import KeyPair
 
 
 if __name__ == "__main__":
-    key = KeyPair()
-
-    print(key.public.format(format_type="multiline"))
+    variable = "foo"
+    print(variable)
+    def change_variable(variable):
+        variable = "bar"
+        return variable
+    change_variable(variable)
+    print(variable)
