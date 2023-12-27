@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from .key import KeyPair
+from .key import KeyPair, KeyFormatType
 
 class App:
     def __init__(self):
@@ -38,34 +38,43 @@ class App:
 
     def click_button2(self):
         self.text_box.delete(1.0, tk.END)
-        self.text_box.insert(1.0, self.key.private.format("multiline"))
+        self.text_box.insert(1.0, self.key.private.format(KeyFormatType.MULTILINE))
         self.key.key_type = "private"
 
     def click_button3(self):
         self.text_box.delete(1.0, tk.END)
-        self.text_box.insert(1.0, self.key.public.format("multiline"))
+        self.text_box.insert(1.0, self.key.public.format(KeyFormatType.MULTILINE))
         self.key.key_type = "public"
 
     def click_button4(self):
         self.text_box.delete(1.0, tk.END)
+        if not self.key.key_type:
+            self.text_box.insert(1.0, "First choose a Private or Public key type")
+            return
         if self.key.key_type == "private":
-            self.text_box.insert(1.0, self.key.private.format("multiline"))
+            self.text_box.insert(1.0, self.key.private.format(KeyFormatType.MULTILINE))
         elif self.key.key_type == "public":
-            self.text_box.insert(1.0, self.key.public.format("multiline"))
+            self.text_box.insert(1.0, self.key.public.format(KeyFormatType.MULTILINE))
 
     def click_button5(self):
         self.text_box.delete(1.0, tk.END)
+        if not self.key.key_type:
+            self.text_box.insert(1.0, "First choose a Private or Public key type")
+            return
         if self.key.key_type == "private":
-            self.text_box.insert(1.0, self.key.private.format("string"))
+            self.text_box.insert(1.0, self.key.private.format(KeyFormatType.STRING))
         elif self.key.key_type == "public":
-            self.text_box.insert(1.0, self.key.public.format("string"))
+            self.text_box.insert(1.0, self.key.public.format(KeyFormatType.STRING))
 
     def click_button6(self):
         self.text_box.delete(1.0, tk.END)
+        if not self.key.key_type:
+            self.text_box.insert(1.0, "First choose a Private or Public key type")
+            return
         if self.key.key_type == "private":
-            self.text_box.insert(1.0, self.key.private.format("base64"))
+            self.text_box.insert(1.0, self.key.private.format(KeyFormatType.BASE64))
         elif self.key.key_type == "public":
-            self.text_box.insert(1.0, self.key.public.format("base64"))
+            self.text_box.insert(1.0, self.key.public.format(KeyFormatType.BASE64))
 
 app = App()
 app.root.mainloop()
