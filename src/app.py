@@ -31,9 +31,11 @@ class App:
         self.button6 = ttk.Button(
             self.frame2, text="Base64", command=self.click_button6
         )
-        # TODO: state where new key is generated and user chooses format but public/private hasn't been pressed
-        self.text_box = tk.Text(self.root)
+        self.text_box = tk.Text(self.root, width=64)
         self.text_box.insert(tk.END, "Click the 'Generate New Key' button to begin")
+        copy_button = ttk.Button(
+            self.root, text="Copy to Clipboard", command=self.copy_to_clipboard
+        )
         self.button1.pack()
         self.button2.pack(side=tk.LEFT, expand=True)
         self.button3.pack(side=tk.LEFT, expand=True)
@@ -43,7 +45,19 @@ class App:
 
         self.frame1.pack()
         self.frame2.pack()
-        self.text_box.pack(expand=True)
+        self.text_box.pack(padx=10, pady=(10, 5), expand=True)
+        copy_button.pack(pady=(0, 10))
+
+    def copy_to_clipboard(self):
+        # Get the text from the Text widget
+        text_content = self.text_box.get(1.0, tk.END)
+
+        # Clear the clipboard and append the text
+        self.root.clipboard_clear()
+        self.root.clipboard_append(text_content)
+
+        # Update clipboard
+        self.root.update()
 
     def click_button1(self):
         self.text_box.delete(1.0, tk.END)
