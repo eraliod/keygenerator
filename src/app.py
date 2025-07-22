@@ -11,26 +11,14 @@ class App:
         self.root = tk.Tk()
         self.root.title("RSA Key Generator")
 
-        self.button1 = ttk.Button(
-            self.root, text="Generate New Key", command=self.click_button1
-        )
+        self.button1 = ttk.Button(self.root, text="Generate New Key", command=self.click_button1)
         self.frame1 = ttk.Frame(self.root)
-        self.button2 = ttk.Button(
-            self.frame1, text="Private", command=self.click_button2
-        )
-        self.button3 = ttk.Button(
-            self.frame1, text="Public", command=self.click_button3
-        )
+        self.button2 = ttk.Button(self.frame1, text="Private", command=self.click_button2)
+        self.button3 = ttk.Button(self.frame1, text="Public", command=self.click_button3)
         self.frame2 = ttk.Frame(self.root)
-        self.button4 = ttk.Button(
-            self.frame2, text="Multiline", command=self.click_button4
-        )
-        self.button5 = ttk.Button(
-            self.frame2, text="String", command=self.click_button5
-        )
-        self.button6 = ttk.Button(
-            self.frame2, text="Base64", command=self.click_button6
-        )
+        self.button4 = ttk.Button(self.frame2, text="Multiline", command=self.click_button4)
+        self.button5 = ttk.Button(self.frame2, text="String", command=self.click_button5)
+        self.button6 = ttk.Button(self.frame2, text="Base64", command=self.click_button6)
         self.text_box = tk.Text(self.root, width=64)
         self.text_box.insert(tk.END, "Click the 'Generate New Key' button to begin")
         copy_button = ttk.Button(
@@ -47,6 +35,32 @@ class App:
         self.frame2.pack()
         self.text_box.pack(padx=10, pady=(10, 5), expand=True)
         copy_button.pack(pady=(0, 10))
+
+        # Center the window on screen after all widgets are packed
+        self.center_window()
+
+    def center_window(self):
+        """Center the window on the screen"""
+        # Update the window to get proper dimensions
+        self.root.update_idletasks()
+
+        # Set a minimum size for the window
+        self.root.minsize(600, 400)
+
+        # Get window dimensions (use actual or minimum)
+        window_width = max(self.root.winfo_reqwidth(), 600)
+        window_height = max(self.root.winfo_reqheight(), 400)
+
+        # Get screen dimensions
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
+
+        # Calculate position to center the window
+        x = (screen_width // 2) - (window_width // 2)
+        y = (screen_height // 2) - (window_height // 2)
+
+        # Set the window position and size
+        self.root.geometry(f"{window_width}x{window_height}+{x}+{y}")
 
     def copy_to_clipboard(self):
         # Get the text from the Text widget
@@ -107,5 +121,10 @@ class App:
             self.text_box.insert(1.0, self.key.public.format(KeyFormatType.BASE64))
 
 
-app = App()
-app.root.mainloop()
+def main():
+    app = App()
+    app.root.mainloop()
+
+
+if __name__ == "__main__":
+    main()
