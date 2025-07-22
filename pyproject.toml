@@ -1,0 +1,25 @@
+[project]
+name = "keygenerator"
+version = "0.1.0"
+description = "RSA Key Generator with GUI"
+readme = "README.md"
+authors = [
+    {name = "Damian Eralio", email = "your.email@example.com"}
+]
+requires-python = ">=3.8,<3.13"
+dependencies = [
+    "cryptography>=43.0.0",
+]
+
+[project.scripts]
+keygenerator = "src.app:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.uv]
+dev-dependencies = []
