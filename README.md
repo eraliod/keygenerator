@@ -2,6 +2,8 @@
 
 A simple GUI application for generating RSA key pairs with different output formats.
 
+![Key Generator Screenshot](keygenerator.png)
+
 ## Requirements
 
 - Python 3.8+ (tested with Python 3.12)
